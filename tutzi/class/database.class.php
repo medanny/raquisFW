@@ -6,7 +6,7 @@
  * para editar, insertar, y editar clases.
  */
 // incluir archivo con todas las variables necesarias
-include("database.constants.php");
+include("config/conf.php");
 class MySQLDB //Inicio de clase
 {
 				var $connection; //La conexion a la base de datos

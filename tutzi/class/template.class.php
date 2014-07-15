@@ -10,9 +10,39 @@
     $this->HTML=" ";
     }
     
+    function incHead(){
+       $this->htmlAdd(file_get_contents('tutzi/inc/head.php'));
+    }
+    function incTail(){
+    $this->htmlAdd(file_get_contents('tutzi/inc/tail.php'));    
+    }
+
+    function cssrewrite($css){
+    $this->htmlAdd("<style>".$css."
+</style>");
+
+    }
+    function addFormbox($title,$header,$footer){
+
+    $this->htmlAdd('<div class="form-box">
+            <div class="header">'.$title.'</div>'.
+            $header.'
+                <div class="footer">                                                               
+                    '.$footer.'
+                    
+                </div>
+            </form>
+
+           
+            </div>
+        </div>
+');
+    }
+
     function buildSite(){
     include("tutzi/inc/head.php");
     //CONTENT HERE
+
     include("tutzi/inc/tail.php");
     }
 
@@ -57,12 +87,18 @@
     }
 
 
+    function render(){
+
+    return $this->HTML;
+     $this->HTML=" ";
+
+    }
 
     function htmlAdd($text){
     $this->HTML=$this->HTML.$text;
     }
 
 }
-;
+
 $template = new Template();
 ?>

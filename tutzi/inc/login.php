@@ -1,6 +1,15 @@
-<body class="bg-black">
+<?php include_once "tutzi/class/database.class.php";?>
+<body>
 
-        <div class="form-box" id="login-box">
+<style>
+body {
+    background-color: #222222;
+}
+html{background-color: #222222;
+}
+</style>
+
+        <div class="form-box">
             <div class="header">Sign In</div>
             <form action="../../index.html" method="post">
                 <div class="body bg-gray">
@@ -19,17 +28,10 @@
                     
                     <p><a href="#">I forgot my password</a></p>
                     
-                    <a href="register.html" class="text-center">Register a new membership</a>
                 </div>
             </form>
 
-            <div class="margin text-center">
-                <span>Sign in using social networks</span>
-                <br/>
-                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
+           
             </div>
         </div>
 

@@ -7,6 +7,7 @@
  
 //Constantes de Base de Datos// 
 
+
 define("DB_SERVER", "");
 define("DB_USER", "");//usuario
 define("DB_PASS", "");//contrasena
