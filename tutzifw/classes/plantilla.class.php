@@ -1,5 +1,5 @@
 <?php
-class Template {
+class Plantilla {
 
 	protected $variables = array();
 	protected $_control;
@@ -34,7 +34,7 @@ class Template {
 				include (ROOT . DS . 'app' . DS . 'vistas' . DS . 'encabezado.php');
 			}
 
-        include (ROOT . DS . 'app' . DS . 'vista' . DS . $this->_control . DS . $this->_accion . '.php');		 
+        include (ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . $this->_accion . '.php');		 
 
 			if (file_exists(ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . 'pie.php')) {
 				include (ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . 'pie.php');

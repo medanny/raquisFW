@@ -26,7 +26,7 @@ class Control {
 		$this->_control = $control;
 		$this->_modelo = $modelo;
 		$this->$modelo = new $modelo;
-		$this->_plantilla = new plantilla($control,$accion);
+		$this->_plantilla = new Plantilla($control,$accion);
 
 	}
 

@@ -97,8 +97,15 @@ function callHook() {
         $control = ucwords($control);
         $modelo = $control;
         $control.= 'Control';
+
+        echo "Control:" . $control;
+        echo "Modelo:" . $modelo;
+        echo "Accion:" . $accion;
+
         $dispatch = new $control($modelo, $nombreControl, $accion);
+
         
+
         if ((int)method_exists($control, $accion)) {
             call_user_func_array(array($dispatch, $accion), $queryString);
         } else {
@@ -113,7 +120,14 @@ function callHook() {
         $control = $control;
         $modelo = $control;
         $control.= 'Control';
+
+
+                echo "Control:" . $control;
+        echo "Modelo:" . $modelo;
+        echo "Accion:" . $accion;
+
         $dispatch = new $control($modelo, $nombreControl, $accion);
+
         
         if ((int)method_exists($control, $accion)) {
             call_user_func_array(array($dispatch, $accion), $queryString);
@@ -140,23 +154,23 @@ function __autoload($className) {
         require_once (ROOT . DS . 'tutzifw' . DS . 'classes' . DS . strtolower($className) . '.class.php');
     } 
     /* intentar cargar clase como controlador */
-    else if (file_exists(ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
-        require_once (ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php');
+    else if (file_exists(ROOT . DS . 'app' . DS . 'controladores' . DS . strtolower($className) . '.php')) {
+        require_once (ROOT . DS . 'app' . DS . 'controladores' . DS . strtolower($className) . '.php');
     } 
 
     /* intentar cargar clase como modelo */
-    else if (file_exists(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php')) {
-        require_once (ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
+    else if (file_exists(ROOT . DS . 'app' . DS . 'modelos' . DS . strtolower($className) . '.php')) {
+        require_once (ROOT . DS . 'app' . DS . 'modelos' . DS . strtolower($className) . '.php');
     } 
 
     /* intentar cargar clase como modulos */
-    else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'modulos' . DS . strtolower($className) . '.php')) {
-        require_once (ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
+    else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'modulos' . DS . strtolower($className) . '.mod.php')) {
+        require_once (ROOT . DS . 'tutzifw' . DS . 'modulos' . DS . strtolower($className) . '.mod.php');
     } 
 
     /* intentar cargar clase como plantilla */
     else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'plantilla' . DS . strtolower($className) . '.php')) {
-        require_once (ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
+        require_once (ROOT . DS . 'tutzifw' . DS . 'plantilla' . DS . strtolower($className) . '.php');
     } 
 
     else {
@@ -164,6 +178,8 @@ function __autoload($className) {
         /* Contenido de Errores.   */
     }
 } 
+$mysql= new MySQLDB;
+$sesion= new Session;
 
 setReportes();
 removeMagicQuotes();

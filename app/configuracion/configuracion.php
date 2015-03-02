@@ -10,10 +10,10 @@
   //---------------CONSTANTES GENERALES------------------\\
  //-------------------------------------------------------\\
 
-define('CONTROL_PRINCIPAL',''); //Nombre del controlador principal
+define('CONTROL_PRINCIPAL','inicio'); //Nombre del controlador principal
 define('PLANTILLA',''); // Nombre del Template
 define('DOMINIO',''); //nombre de dominio
-define('ANVITO_DESARROLLO',false); // si esta en desarrollo la aplicacion (TRUE o FALSE)
+define('ANVITO_DESARROLLO',true); // si esta en desarrollo la aplicacion (TRUE o FALSE)
 define('RUTA_CLASE', ROOT . DS . 'tutzifw' . DS . 'classes' . DS);
 define('RUTA_PLANTILLA', ROOT . DS . 'tutzifw'.DS. 'plantillas' . DS . PLANTILLA . DS);
 define('RUTA_PLANTILLA_HTML', DOMINIO . DS . 'tutzifw'.DS. 'plantillas' . DS . PLANTILLA . DS);
@@ -24,10 +24,10 @@ define('PAGINA_USUARIO', DOMAIN . DS . 'main' . DS . 'index');
    //---------------------------------------------------\\
   //------------CONSTANTES DE BASE DE DATOS--------------\\
  //-------------------------------------------------------\\
-define('BD_NOMBRE', '');
-define('BD_USUARIO', '');
-define('BD_CONTRASENA', '');
-define('BD_SERVIDOR', '');
+define('BD_NOMBRE', 'admin_registro');
+define('BD_USUARIO', 'admin_registro');
+define('BD_CONTRASENA', 'registro123');
+define('BD_SERVIDOR', 'localhost');
 
    //---------------------------------------------------\\
   //--------------CONSTANTES DE SESSIONES----------------\\

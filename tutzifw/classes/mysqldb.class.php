@@ -21,7 +21,7 @@ class MySQLDB
     function MySQLDB() {
 
         /* Crear la conexion a la base de datos */
-        $this->conexion = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $this->conexion = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_CONTRASENA, BD_NOMBRE);
         if ($this->conexion->connect_errno > 0) {
             die('Unable to connect to database [' . $this->conexion->connect_error . ']');
         }
@@ -33,15 +33,13 @@ class MySQLDB
      * @return Objeto        El resultado del query.
      */
     function query($query) {
-        global $database;
         if(ANVITO_DESARROLLO) {echo $query;}
         $result = $this->conexion->query($query);
-        //    $dbarray = mysql_fetch_array($result);
         return $result;
     }
 
     //funcion para seleccionar toda la informacion de una tabla, regresa un array con toda la informacion
-    function seleccionarTodo($table) {
+    function elegirTodo($table) {
         global $database;
         $q = ("SELECT * FROM `" . $table . "`");
         $result = $this->conexion->query($q);
@@ -49,7 +47,7 @@ class MySQLDB
     }
 
     // Esta funcion selecciona la informacion de un campo especifico. regresa un array
-    function seleccionarCampo($table, $field, $id) {
+    function elegirDondeCampo($table, $field, $id) {
         global $database;
         $q = ("SELECT * FROM `" . $table . "` WHERE `" . $field . "` = '" . $id . "'");
         $result = $this->conexion->query($q);
@@ -98,7 +96,7 @@ class MySQLDB
         return $query->num_rows;
     }
 
-    function seleccionarUnCampo($table, $field, $where, $value) {
+    function elegirUnCampo($table, $field, $where, $value) {
         $query = 'SELECT ' . $field . ' FROM ' . $table . ' WHERE ' . $where . '=' . $value;
         return array_values(mysqli_fetch_array($this->query($query))) [0];
     }
