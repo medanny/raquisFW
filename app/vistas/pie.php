@@ -1,3 +1,3 @@
 <?php
-echo "PIE <br>";
+echo $pie;
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bootstrap.php se encarga de hacer funcional el MVC, tiene algunas funciones muy basicas.
  * @author Daniel Lozano Carrillo <daniel@unav.edu.mx>
@@ -10,9 +11,8 @@
 /* Cargar la configuracion. */
 require_once (ROOT . DS . 'app' . DS . 'configuracion' . DS . 'configuracion.php');
 
-
 /**
- * Verifica en la configuracion, si la aplicacion esta en desarrollo, si lo esta 
+ * Verifica en la configuracion, si la aplicacion esta en desarrollo, si lo esta
  * muestra errores, si no guarda logs de los errores.
  */
 
@@ -28,7 +28,6 @@ function setReportes() {
     }
 }
 
-
 /**
  * Remuebe los diagonales de los strings.
  * @param  String,Array $value El valor con diagonales.
@@ -38,7 +37,6 @@ function stripSlashesDeep($value) {
     $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
     return $value;
 }
-
 
 /**
  * Remuebe magic quotes.
@@ -51,8 +49,6 @@ function removeMagicQuotes() {
         $_COOKIE = stripSlashesDeep($_COOKIE);
     }
 }
-
-
 
 /**
  * Remueve los registros globales como Session, cookies ect.
@@ -71,8 +67,6 @@ function unregistrarGlobales() {
     }
 }
 
-
-
 /**
  * Funcion usada para interpretar y pasar valores a los diferentes controladores.
  * @return void
@@ -82,30 +76,33 @@ function callHook() {
     $urlArray = array();
     $urlArray = explode("/", $url);
     $campos = count($urlArray);
+    
     //echo $campos;
-    if ($campos > 1) {
+    if ($campos >= 1) {
         $control = $urlArray[0];
         array_shift($urlArray);
-        $accion = $urlArray[0];
-        array_shift($urlArray);
+        if (isset($urlArray[0])) {
+            $accion = $urlArray[0];
+            array_shift($urlArray);
+            $queryString = $urlArray;
+        }else{
+
+        $accion = "index";
         $queryString = $urlArray;
-        if($accion==""||$accion==NULL){
-            $accion = "index";
         }
+        
         
         $nombreControl = $control;
         $control = ucwords($control);
         $modelo = $control;
         $control.= 'Control';
-
-        echo "Control:" . $control;
-        echo "Modelo:" . $modelo;
-        echo "Accion:" . $accion;
-
-        $dispatch = new $control($modelo, $nombreControl, $accion);
-
         
-
+        //echo "Control:" . $control;
+        //echo "Modelo:" . $modelo;
+        //echo "Accion:" . $accion;
+        
+        $dispatch = new $control($modelo, $nombreControl, $accion);
+        
         if ((int)method_exists($control, $accion)) {
             call_user_func_array(array($dispatch, $accion), $queryString);
         } else {
@@ -113,21 +110,19 @@ function callHook() {
             /* Contenido de Errores */
         }
     } else {
-    	$control = CONTROL_PRINCIPAL;
+        $control = CONTROL_PRINCIPAL;
         $accion = "index";
         $queryString = $urlArray;
-    	$nombreControl = $control;
+        $nombreControl = $control;
         $control = $control;
         $modelo = $control;
         $control.= 'Control';
-
-
-                echo "Control:" . $control;
-        echo "Modelo:" . $modelo;
-        echo "Accion:" . $accion;
-
+        
+        //echo "Control:" . $control;
+        //echo "Modelo:" . $modelo;
+        //echo "Accion:" . $accion;
+        
         $dispatch = new $control($modelo, $nombreControl, $accion);
-
         
         if ((int)method_exists($control, $accion)) {
             call_user_func_array(array($dispatch, $accion), $queryString);
@@ -135,12 +130,11 @@ function callHook() {
             
             /* Contenido de Errores */
         }
-        
     }
-   // echo "Controller ". $controllerName . " model: " . $model ." actions: ". $action ;
+    
+    // echo "Controller ". $controllerName . " model: " . $model ." actions: ". $action ;
+    
 }
-
-
 
 /** 
  * Esta funcion es de PHP y se encarga de tratar de cargar clases, que sean llamadas, pero
@@ -149,37 +143,46 @@ function callHook() {
  * @return void
  */
 function __autoload($className) {
+    
     /* intentar cargar clase como clase principal */
     if (file_exists(ROOT . DS . 'tutzifw' . DS . 'classes' . DS . strtolower($className) . '.class.php')) {
         require_once (ROOT . DS . 'tutzifw' . DS . 'classes' . DS . strtolower($className) . '.class.php');
-    } 
+    }
+    
     /* intentar cargar clase como controlador */
     else if (file_exists(ROOT . DS . 'app' . DS . 'controladores' . DS . strtolower($className) . '.php')) {
         require_once (ROOT . DS . 'app' . DS . 'controladores' . DS . strtolower($className) . '.php');
-    } 
-
+    }
+    
     /* intentar cargar clase como modelo */
     else if (file_exists(ROOT . DS . 'app' . DS . 'modelos' . DS . strtolower($className) . '.php')) {
         require_once (ROOT . DS . 'app' . DS . 'modelos' . DS . strtolower($className) . '.php');
-    } 
-
+    }
+    
     /* intentar cargar clase como modulos */
     else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'modulos' . DS . strtolower($className) . '.mod.php')) {
         require_once (ROOT . DS . 'tutzifw' . DS . 'modulos' . DS . strtolower($className) . '.mod.php');
+    }
+    
+    /* intentar cargar clase como plantilla */
+    else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'plantillas' . DS . strtolower($className) . '.interfaz.php')) {
+        require_once (ROOT . DS . 'tutzifw' . DS . 'plantillas' . DS . strtolower($className) . '.interfaz.php');
     } 
 
     /* intentar cargar clase como plantilla */
-    else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'plantilla' . DS . strtolower($className) . '.php')) {
-        require_once (ROOT . DS . 'tutzifw' . DS . 'plantilla' . DS . strtolower($className) . '.php');
-    } 
+    else if (file_exists(ROOT . DS . 'tutzifw' . DS . 'plantillas' . DS . PLANTILLA . DS . 'php' . DS . strtolower($className) . '.class.php')) {
+        require_once (ROOT . DS . 'tutzifw' . DS . 'plantillas' . DS . PLANTILLA . DS . 'php' . DS . strtolower($className) . '.class.php');
+    }
 
     else {
-        
+        echo $className ." no fue encontrada";
         /* Contenido de Errores.   */
+
+        
     }
-} 
-$mysql= new MySQLDB;
-$sesion= new Session;
+}
+$mysql = new MySQLDB;
+$sesion = new Sesion;
 
 setReportes();
 removeMagicQuotes();

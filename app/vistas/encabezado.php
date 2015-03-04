@@ -1,3 +1,2 @@
 <?php
-echo "HEAD <br>";
-?>
+echo $cabeza;

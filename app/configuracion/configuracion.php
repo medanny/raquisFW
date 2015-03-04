@@ -11,8 +11,8 @@
  //-------------------------------------------------------\\
 
 define('CONTROL_PRINCIPAL','inicio'); //Nombre del controlador principal
-define('PLANTILLA',''); // Nombre del Template
-define('DOMINIO',''); //nombre de dominio
+define('PLANTILLA','adminlte'); // Nombre del Template
+define('DOMINIO','registro.tutzilabs.com.mx'); //nombre de dominio
 define('ANVITO_DESARROLLO',true); // si esta en desarrollo la aplicacion (TRUE o FALSE)
 define('RUTA_CLASE', ROOT . DS . 'tutzifw' . DS . 'classes' . DS);
 define('RUTA_PLANTILLA', ROOT . DS . 'tutzifw'.DS. 'plantillas' . DS . PLANTILLA . DS);
@@ -33,11 +33,11 @@ define('BD_SERVIDOR', 'localhost');
   //--------------CONSTANTES DE SESSIONES----------------\\
  //-------------------------------------------------------\\
 
-define("TABLA_USUARIOS", '');//tabla de usuarios
-define("CAMPO_ID_USUARIO", '');//compo de usuario
-define("CAMPO_USUARIO", '');//compo de usuario
-define("CAMPO_CONTRASENA", '');//campo de clave
-define("CAMPO_PERMISOS", '');//campo de permisos
+define("TABLA_USUARIOS", 'usuarios');//tabla de usuarios
+define("CAMPO_ID_USUARIO", 'id');//compo de usuario
+define("CAMPO_USUARIO", 'usuario');//compo de usuario
+define("CAMPO_CONTRASENA", 'clave');//campo de clave
+define("CAMPO_PERMISOS", 'nivel');//campo de permisos
 
 
    //------------------------------------------------------\\

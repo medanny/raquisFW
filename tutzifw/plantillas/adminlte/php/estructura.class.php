@@ -1,6 +1,6 @@
 <?php
-class Estructura
-{
+class Estructura{
+
 public static function abr_sidebar(){
 return <<<html
 <aside class="left-side sidebar-offcanvas">

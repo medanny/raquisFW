@@ -1,6 +1,45 @@
 <?php
-class Widgets
-{
+
+class Widgets{
+
+public static function loginbox($nombre, $desc, $input_usuario, $input_clave, $submit, $link_1_texto, $link_1_url, $link_2_texto, $link_2_url){
+
+return <<<EOT
+
+<div class="login-box">
+      <div class="login-logo">
+        <a href="">$nombre</a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">$desc</p>
+        <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input class="form-control" placeholder="Usuario" type="text" name="$input_usuario">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input class="form-control" placeholder="Contrasena" type="password" name="$input_clave">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">$submit</button>
+            </div><!-- /.col -->
+          </div>
+        </form>
+
+
+        <a href="$link_1_url">$link_1_texto</a><br>
+        <a href="$link_2_url" class="text-center">$link_2_texto</a>
+
+      </div><!-- /.login-box-body -->
+    </div>
+
+
+EOT;
+
+}
     
 public static function menuBusqueda($action = '', $method = 'GET') {
         return <<<EOT
