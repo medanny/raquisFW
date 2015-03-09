@@ -17,3 +17,10 @@ if(Validar::correo("Hello good bye")){
 }else{
 	echo "el correo no es correcto";
 }
+echo "<br>";
+$en=new Lenguaje("en");
+echo $en->g['hola']." ".$en->g['mama'];
+
+echo "<br>";
+$es=new Lenguaje("es");
+echo $es->g['hola']." ".$es->g['mama'];
