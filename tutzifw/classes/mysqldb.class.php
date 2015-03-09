@@ -33,7 +33,7 @@ class MySQLDB
      * @return Objeto        El resultado del query.
      */
     function query($query) {
-        if(ANVITO_DESARROLLO) {echo $query;}
+        if(ANVITO_DESARROLLO) {echo "<br>".$query."<br>";}
         $result = $this->conexion->query($query);
         return $result;
     }

@@ -10,15 +10,16 @@
   //---------------CONSTANTES GENERALES------------------\\
  //-------------------------------------------------------\\
 
-define('CONTROL_PRINCIPAL','inicio'); //Nombre del controlador principal
+define('CONTROL_PRINCIPAL','admin'); //Nombre del controlador principal
 define('PLANTILLA','adminlte'); // Nombre del Template
-define('DOMINIO','registro.tutzilabs.com.mx'); //nombre de dominio
+define('DOMINIO','http://registro.tutzilabs.com.mx'); //nombre de dominio
 define('ANVITO_DESARROLLO',true); // si esta en desarrollo la aplicacion (TRUE o FALSE)
 define('RUTA_CLASE', ROOT . DS . 'tutzifw' . DS . 'classes' . DS);
+define('RUTA_MODULOS', ROOT . DS . 'tutzifw' . DS . 'modulos' . DS);
 define('RUTA_PLANTILLA', ROOT . DS . 'tutzifw'.DS. 'plantillas' . DS . PLANTILLA . DS);
 define('RUTA_PLANTILLA_HTML', DOMINIO . DS . 'tutzifw'.DS. 'plantillas' . DS . PLANTILLA . DS);
-define('PAGINA_LOGIN', DOMAIN . DS . 'content' . DS . 'index');
-define('PAGINA_USUARIO', DOMAIN . DS . 'main' . DS . 'index');
+define('PAGINA_LOGIN', DOMINIO . DS . 'content' . DS . 'index');
+define('PAGINA_USUARIO', DOMINIO . DS . 'main' . DS . 'index');
 
 
    //---------------------------------------------------\\

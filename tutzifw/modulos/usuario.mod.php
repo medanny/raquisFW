@@ -8,37 +8,38 @@ class Usuario
     public $sesion_activa;
     
     function __construct() {
-        echo "Bienvenido a Usuario, verificando sesion <br>";
         $this->verificarLogin();
 
     }
     
     function verificarLogin() {
         global $sesion;
-        echo "Usuario->". $sesion->valor("usuario");
-        echo "Id->". $sesion->valor("id");
-        
+
+
         if ($sesion->verificar("id") && $sesion->verificar("usuario")) {
-            if ($this->confirmarId($sesion->valor("id"), $sesion->valor("usuario"))) {
+           
+            if ($this->confirmarId($sesion->valor("usuario"), $sesion->valor("id"))) {
+               
                 $this->sesion_activa = TRUE;
                 $this->usuario = $sesion->valor("usuario");
                 $this->info_usuario = $this->obtenerDatosUsuario($this->usuario);
-                return "esta adentro";
             } else {
                 $sesion->destruir();
                 $this->sesion_activa = FALSE;
-                return "esta afuera";
             }
+        }else{
+
         }
     }
     
     function confirmarId($usuario, $id) {
         global $mysql;
-        $result = $mysql->aArray($mysql->elegirDondeCampo(TABLA_USUARIOS, CAMPO_USUARIO, $usuario));
+        $result = $mysql->aArray($mysql->query("SELECT * FROM ".TABLA_USUARIOS." WHERE ".CAMPO_USUARIO ." = '".$usuario."'"));
         $nrows = count($result);
         if (!$result || $nrows < 1) {
             return false;
         } else if ($id == $result[0][CAMPO_ID_USUARIO]) {
+        
             return true;
         } else {
             return false;

@@ -3,21 +3,17 @@ class AdminControl extends Control
 {
     
     function index() {
-        global $sesion;
-        $sesion->asignar("texto1","Hola mundo");
-        $tema= new Tema;
-        $tema->titulo("Login");
-        $tema->ruta("HELLO");
-        $this->set("cabeza",$tema->encabezado());
-        $this->set("pie",$tema->pie());
-        if($sesion->verificar('error')){
-                $this->set("error",$sesion->valor('error'));
-            }
-        $usuario = new Usuario;
+        $this->Admin->plantilla->titulo("Login");
+        $this->Admin->plantilla->skin("login-page"); 
+        $this->Admin->plantilla->ruta("HELLO");
+        $this->set("cabeza",$this->Admin->plantilla->encabezado());
+        $this->set("pie",$this->Admin->plantilla->pie());
+
+
         if (isset($_POST['usuario'])) {
-        	$resultado=$usuario->inciarSesion($_POST['usuario'],$_POST['clave']);
+        	$resultado=$this->Admin->usuario->inciarSesion($_POST['usuario'],$_POST['clave']);
         	if($resultado==0){
-        		Utilerias::redirectSeguro("/registro/admin/inicio");
+        		Utilerias::redirectSeguro("/admin/inicio");
              
                    		        	}else{
         	}
@@ -27,17 +23,46 @@ class AdminControl extends Control
     }
 
     function inicio(){
-        global $sesion;
-        $this->set("text",$sesion->valor("texto1"));
-        $tema= new Tema;
-        $tema->titulo("Login");
-        $tema->ruta("HELLO");
-        $this->set("cabeza",$tema->encabezado());
-        $this->set("pie",$tema->pie());
-        
-        $usuario= new Usuario;
-        $this->set("login", $usuario->verificarLogin());
-        $this->set("usuario",$usuario->usuario);
+        //$this->Admin->plantilla->titulo("Login");
+        //$this->Admin->plantilla->skin("skin-blue");
+        $this->Admin->plantilla->nombredeApp="Registro";
+        $this->Admin->plantilla->skin="skin-blue";
+        $this->Admin->plantilla->titulo="Inicio";
+        $this->Admin->plantilla->piedePagina="Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.";
+        $this->Admin->plantilla->ruta=Array("Home","Hello");
+        $this->Admin->plantilla->datos_usuario=Array(
+            "imagen"=>"url",
+            "usuario"=>"Nombre Usuario",
+            "desc1"=>"descripcion 1",
+            "desc2"=>"descripcion 2",
+            "link1"=>"link 1",
+            "link2"=>"link 2",
+            "link3"=>"link 3",
+            "perfil"=>"perfil",
+            "logout"=>"url"
+            );
+            //tipos -> separador,sensillo,multimple
+        $this->Admin->plantilla->menu=Array(
+                Array("separador","Menu"),
+                Array("sensillo","#","fa fa-book","text"),
+                Array("multiple","#","fa fa-book",
+                    Array(
+                        Array("#","fa fa-book","text"),
+                        Array("#","fa fa-book","text"),
+                        Array("#","fa fa-book","text")
+                        
+                         )
+                     ),
+                Array("separador","Menu"),
+                Array("sensillo","#","fa fa-book","text"),
+
+
+            );
+
+
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
 
 
 

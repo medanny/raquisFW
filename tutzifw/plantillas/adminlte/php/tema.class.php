@@ -2,24 +2,35 @@
 
 class Tema implements TemaBase{
 
-	protected $titulo;
+	protected $nombreApp;
+    protected $titulo;
 	protected $ruta;
 	protected $menu;
 	protected $html;
+    protected $skin;
+    protected $mensajes;
+    protected $notificaciones;
+    protected $tareas;
+    protected $datos_usuario;
+    protected $busqueda;
+    protected $piedePagina;
+
+
+    public function __get($property) {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
+    }
+
+    public function __set($property, $value) {
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
+    }
 
 	public function __construct(){	
 	}
 
-	public function titulo($titulo){
-		$this->titulo=$titulo;
-	}
-
-	public function ruta($ruta){
-		$this->ruta=$ruta;
-	}
-
-	public function menu($menu){
-	}
 
 	public function encabezado(){
 		$plantilla=RUTA_PLANTILLA_HTML;
@@ -27,7 +38,7 @@ class Tema implements TemaBase{
 	<html>
 	<head>
     <meta charset='UTF-8'>
-    <title></title>
+    <title>".$this->titulo."</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href='". RUTA_PLANTILLA_HTML ."bootstrap/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
     <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css' />
@@ -48,14 +59,15 @@ class Tema implements TemaBase{
         <script src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js'></script>
     <![endif]-->
   </head>
-  <body class='login-page'>
+  <body class='".$this->skin."'>
   ";
 
 	}
 
 	public function pie(){
 
-		return "   <!-- jQuery 2.1.3 -->
+		return "   
+        <!-- jQuery 2.1.3 -->
     <script src='".RUTA_PLANTILLA_HTML."plugins/jQuery/jQuery-2.1.3.min.js'></script>
     <!-- jQuery UI 1.11.2 -->
     <script src='".RUTA_PLANTILLA_HTML."http://code.jquery.com/ui/1.11.2/jquery-ui.min.js' type='text/javascript'></script>
@@ -99,10 +111,181 @@ class Tema implements TemaBase{
 </html>";
 
 	}
+  public function cerCont(){
+
+    return "</section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+";
+  }
+  public function footer(){
+
+    return "
+
+      <footer class='main-footer'>
+        <div class='pull-right hidden-xs'>
+          <b>Version</b> 2.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.
+      </footer>
+    </div><!-- ./wrapper -->";
+  }
+
+    public function abrNav(){
+        return " <!-- Site wrapper -->
+    <div class='wrapper'>
+      
+      <header class='main-header'>
+        <a href='#' class='logo'>".$this->nombreApp."</a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class='navbar navbar-static-top' role='navigation'>
+          <!-- Sidebar toggle button-->
+          <a href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button'>
+            <span class='sr-only'>Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </a>
+          <div class='navbar-custom-menu'>
+            <ul class='nav navbar-nav'>";
+    }
+    public function cerNav(){
+
+        return "
+        </ul>
+          </div>
+        </nav>
+      </header>";
+    }
+
+    public function ahtml($contenido){
+        $this->html=$this->html.$contenido;
+    }
+
+    public function generarDatosUsuario(){
+        return "<!-- User Account: style can be found in dropdown.less -->
+              <li class='dropdown user user-menu'>
+                <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+                  <img src='".RUTA_PLANTILLA_HTML."dist/img/user2-160x160.jpg' class='user-image' alt='User Image'/>
+                  <span class='hidden-xs'>".$this->datos_usuario['usuario']."</span>
+                </a>
+                <ul class='dropdown-menu'>
+                  <!-- User image -->
+                  <li class='user-header'>
+                    <img src='".RUTA_PLANTILLA_HTML."dist/img/user2-160x160.jpg' class='img-circle' alt='User Image' />
+                    <p>
+                      Nombre de Usuario - Descripcion
+                      <small>Descripcion 2</small>
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class='user-body'>
+                    <div class='col-xs-4 text-center'>
+                      <a href='#'>Menu 1</a>
+                    </div>
+                    <div class='col-xs-4 text-center'>
+                      <a href='#'>Menu 2</a>
+                    </div>
+                    <div class='col-xs-4 text-center'>
+                      <a href='#'>Menu 3</a>
+                    </div>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class='user-footer'>
+                    <div class='pull-left'>
+                      <a href='#' class='btn btn-default btn-flat'>Perfil</a>
+                    </div>
+                    <div class='pull-right'>
+                      <a href='#' class='btn btn-default btn-flat'>Salir</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            ";
+    }
+    public function abrSidebar()
+    {
+        # code...
+        return "
+ <!-- Left side column. contains the sidebar -->
+      <aside class='main-sidebar'>
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class='sidebar'>
+          <!-- Sidebar user panel -->
+        ";
+    }
+
+    public function cerSidebar(){
+        return "
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+        ";
+    }
+
+    public function preContenido(){
+
+        return "
+<!-- =============================================== -->
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class='content-wrapper'>
+        <!-- Content Header (Page header) -->
+        <section class='content-header'>
+          <h1>
+            Titulo
+            <small>Descripcion</small>
+          </h1>
+          <ol class='breadcrumb'>
+            <li><a href='#'><i class='fa fa-dashboard'></i> Nivel 1</a></li>
+            <li><a href='#'>Nivel 2</a></li>
+            <li class='active'> Nivel 3</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class='content'>
+        ";
+    }
 
 	public function renderizar(){
+        $this->ahtml($this->encabezado());
 
-		return $this->encabezado(). $this->pie();
+        $this->ahtml($this->abrNav());
+        if(isset($this->mensajes)){
+
+        }
+        if(isset($this->notificaciones)){
+
+
+        }
+        if(isset($this->tareas)){
+
+        }
+        if(isset($this->datos_usuario)){
+            $this->ahtml($this->generarDatosUsuario());
+
+        }
+        $this->ahtml($this->cerNav());
+        $this->ahtml($this->abrSidebar());
+
+        if(isset($this->datos_usuario)){
+
+        }
+
+        if(isset($this->busqueda)){
+
+        }
+        
+
+        if(isset($this->menu)){
+
+        }
+
+        $this->ahtml($this->cerSidebar());
+        $this->ahtml($this->preContenido());
+
+        return $this->html;
 
 	}
 
