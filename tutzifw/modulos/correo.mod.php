@@ -1,4 +1,8 @@
 <?php
+/**
+ * correo.mod.php
+ * 
+ */
 
 class Correo{
 

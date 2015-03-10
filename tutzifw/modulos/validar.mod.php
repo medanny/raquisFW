@@ -18,6 +18,15 @@ class Validar {
 		}
 	}
 
+	public static function vacio($valor){
+
+		if($valor==""){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 	public static function menor($valor,$valor_base){
 		if($valor<$valor_base){
 			return true;

@@ -30,6 +30,7 @@ define('BD_USUARIO', 'admin_registro');
 define('BD_CONTRASENA', 'registro123');
 define('BD_SERVIDOR', 'localhost');
 
+
    //---------------------------------------------------\\
   //--------------CONSTANTES DE SESSIONES----------------\\
  //-------------------------------------------------------\\
