@@ -3,9 +3,12 @@ class AdminControl extends Control
 {
     
     function index() {
-        $this->Admin->plantilla->titulo("Login");
-        $this->Admin->plantilla->skin("login-page"); 
-        $this->Admin->plantilla->ruta("HELLO");
+        
+        $this->Admin->plantilla->nombredeApp="Registro";
+        $this->Admin->plantilla->skin="login-page";
+        $this->Admin->plantilla->titulo="Inicio";
+        $this->Admin->plantilla->piedePagina="Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.";
+        $this->Admin->plantilla->ruta=Array("Home","Hello");
         $this->set("cabeza",$this->Admin->plantilla->encabezado());
         $this->set("pie",$this->Admin->plantilla->pie());
 
@@ -25,7 +28,7 @@ class AdminControl extends Control
     function inicio(){
         //$this->Admin->plantilla->titulo("Login");
         //$this->Admin->plantilla->skin("skin-blue");
-        $this->Admin->plantilla->nombredeApp="Registro";
+        $this->Admin->plantilla->nombreApp="Registro";
         $this->Admin->plantilla->skin="skin-blue";
         $this->Admin->plantilla->titulo="Inicio";
         $this->Admin->plantilla->piedePagina="Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.";
