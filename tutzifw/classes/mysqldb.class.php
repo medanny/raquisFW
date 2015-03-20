@@ -19,7 +19,6 @@ class MySQLDB
      //La conexion a la base de datos
     /* constructor */
     function MySQLDB() {
-
         /* Crear la conexion a la base de datos */
         $this->conexion = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_CONTRASENA, BD_NOMBRE);
         if ($this->conexion->connect_errno > 0) {
@@ -34,8 +33,8 @@ class MySQLDB
      */
     function query($query) {
         if(ANVITO_DESARROLLO) {echo "<br>".$query."<br>";}
-        $result = $this->conexion->query($query);
-        return $result;
+        return $this->conexion->query($query);
+        
     }
 
     //funcion para seleccionar toda la informacion de una tabla, regresa un array con toda la informacion
@@ -106,7 +105,7 @@ class MySQLDB
     }
 
     //array("Nombre"=>"Daniel","A_Paterno"=>"Lozano","A_Materno"=>"Carrillo");
-    function insetarxArray($data) {
+    function insertarxArray($data) {
          //!!NO PROVADO
          $table=$data['table_name'];
         $query = "INSERT INTO $table ";

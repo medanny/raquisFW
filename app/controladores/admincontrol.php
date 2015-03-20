@@ -26,49 +26,159 @@ class AdminControl extends Control
     }
 
     function inicio(){
-        //$this->Admin->plantilla->titulo("Login");
-        //$this->Admin->plantilla->skin("skin-blue");
-        $this->Admin->plantilla->nombreApp="Registro";
-        $this->Admin->plantilla->skin="skin-blue";
-        $this->Admin->plantilla->titulo="Inicio";
-        $this->Admin->plantilla->piedePagina="Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.";
-        $this->Admin->plantilla->ruta=Array("Home","Hello");
-        $this->Admin->plantilla->datos_usuario=Array(
-            "imagen"=>"url",
-            "usuario"=>"Nombre Usuario",
-            "desc1"=>"descripcion 1",
-            "desc2"=>"descripcion 2",
-            "link1"=>"link 1",
-            "link2"=>"link 2",
-            "link3"=>"link 3",
-            "perfil"=>"perfil",
-            "logout"=>"url"
-            );
-            //tipos -> separador,sensillo,multimple
-        $this->Admin->plantilla->menu=Array(
-                Array("separador","Menu"),
-                Array("sensillo","#","fa fa-book","text"),
-                Array("multiple","#","fa fa-book",
-                    Array(
-                        Array("#","fa fa-book","text"),
-                        Array("#","fa fa-book","text"),
-                        Array("#","fa fa-book","text")
-                        
-                         )
-                     ),
-                Array("separador","Menu"),
-                Array("sensillo","#","fa fa-book","text"),
+        $this->Admin->titulo="Inicio";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Inicio"),
+            Array("#","Fin"));
+        $this->Admin->elementosdePagina();
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
+    }
 
+    function boletos(){
+        $this->Admin->titulo="Generar Boletos";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Generar Boletos"));
+        $this->Admin->elementosdePagina();
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
+    }
 
-            );
-
-
+    function horarios(){
+        $this->Admin->titulo="Catalogo de Horarios";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Catalogos"),
+            Array("#","Horarios"));
+        $this->Admin->elementosdePagina();
         $this->set("cabeza",$this->Admin->plantilla->renderizar());
         $this->set("pie",$this->Admin->plantilla->pie());
         $this->set("usuario",$this->Admin->usuario->usuario);
 
 
+        if(isset($_POST['accion'])){
 
+            switch ($_POST['accion']) {
+                case 'nuevo':
+                    # code...
+                    unset($_POST['accion']);
+                    $_POST['table_name']="horario";
+                    $this->Admin->insertarxArray($_POST);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+
+        $this->set("horas",$this->Admin->obtenerHorarios());
 
     }
+
+    function lugar(){
+        $this->Admin->titulo="Catalogo de Lugares";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Catalogos"),
+            Array("#","Lugares"));
+        $this->Admin->elementosdePagina();
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
+        if(isset($_POST['accion'])){
+
+            switch ($_POST['accion']) {
+                case 'nuevolugar':
+                    # code...
+                    unset($_POST['accion']);
+                    $_POST['table_name']="lugar";
+                    $this->Admin->insertarxArray($_POST);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+
+        $this->set("lugares",$this->Admin->obtenerLugares());
+
+    }
+
+    function ponente(){
+        $this->Admin->titulo="Catalogo de Ponentes";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Catalogos"),
+            Array("#","Ponentes"));
+        $this->Admin->elementosdePagina();
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
+        
+
+        if(isset($_POST['accion'])){
+
+            switch ($_POST['accion']) {
+                case 'nuevoponente':
+                    # code...
+                    unset($_POST['accion']);
+                    $_POST['table_name']="ponencia";
+                    $this->Admin->insertarxArray($_POST);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+
+        $this->set("ponentes",$this->Admin->obtenerPonentes());
+    }
+
+    function ponencias(){
+        $this->Admin->titulo="Catalogo de Ponencias";
+        $this->Admin->ruta=Array(
+            Array("#","Admin"),
+            Array("#","Catalogos"),
+            Array("#","Ponentes"));
+        $this->Admin->elementosdePagina();
+        $this->set("cabeza",$this->Admin->plantilla->renderizar());
+        $this->set("pie",$this->Admin->plantilla->pie());
+        $this->set("usuario",$this->Admin->usuario->usuario);
+        
+
+        if(isset($_POST['accion'])){
+
+            switch ($_POST['accion']) {
+                case 'nueva':
+                    # code...
+                    unset($_POST['accion']);
+                    $_POST['table_name']="ponencias";
+                    $this->Admin->insertarxArray($_POST);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+
+        $this->set("ponentes",$this->Admin->convertirOpciones($this->Admin->obtenerPonentes(),"id","ponente","ponencia"));
+        $this->set("horarios",$this->Admin->convertirOpciones($this->Admin->obtenerHorarios(),"id","nombre"));
+        $this->set("lugares",$this->Admin->convertirOpciones($this->Admin->obtenerLugares(),"id","nombre"));
+        $this->set("ponencias",$this->Admin->obtenerPonencias());
+        
+           
+    }
+
 }

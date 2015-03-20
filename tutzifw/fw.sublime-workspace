@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"input"
+			],
+			[
+				"abr",
+				"abrBusqueda"
+			],
+			[
+				"inf",
+				"infoUsuLat"
+			],
+			[
+				"me",
+				"menu〔variable〕"
+			],
+			[
+				"m",
+				"abrMenu〔function〕"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
 				"hora",
 				"horario"
 			],
@@ -26,10 +50,6 @@
 			[
 				"_",
 				"$_POST〔variable〕"
-			],
-			[
-				"for",
-				"foreach	foreach …"
 			],
 			[
 				"opt",
@@ -132,10 +152,6 @@
 				"target_file"
 			],
 			[
-				"in",
-				"institucion"
-			],
-			[
 				"re",
 				"require"
 			],
@@ -146,10 +162,6 @@
 			[
 				"func",
 				"functionLink〔class〕"
-			],
-			[
-				"abr",
-				"abrSidebar"
 			],
 			[
 				"menu",
@@ -312,29 +324,53 @@
 			}
 		},
 		{
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/registrocontrol.php",
+			"contents": "<?php\nclass AdminControl extends Control\n{\n    \n    function index() {\n        \n        $this->Admin->plantilla->nombredeApp=\"Registro\";\n        $this->Admin->plantilla->skin=\"login-page\";\n        $this->Admin->plantilla->titulo=\"Inicio\";\n        $this->Admin->plantilla->piedePagina=\"Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.\";\n        $this->Admin->plantilla->ruta=Array(\"Home\",\"Hello\");\n        $this->set(\"cabeza\",$this->Admin->plantilla->encabezado());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n\n\n        if (isset($_POST['usuario'])) {\n        	$resultado=$this->Admin->usuario->inciarSesion($_POST['usuario'],$_POST['clave']);\n        	if($resultado==0){\n        		Utilerias::redirectSeguro(\"/admin/inicio\");\n             \n                   		        	}else{\n        	}\n\n        	\n        }\n    }\n\n    function inicio(){\n        $this->Admin->titulo=\"Inicio\";\n        $this->Admin->ruta=Array(\n            Array(\"#\",\"Admin\"),\n            Array(\"#\",\"Inicio\"),\n            Array(\"#\",\"Fin\"));\n        $this->Admin->elementosdePagina();\n        $this->set(\"cabeza\",$this->Admin->plantilla->renderizar());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n        $this->set(\"usuario\",$this->Admin->usuario->usuario);\n    }\n\n    function boletos(){\n        $this->Admin->titulo=\"Generar Boletos\";\n        $this->Admin->ruta=Array(\n            Array(\"#\",\"Admin\"),\n            Array(\"#\",\"Generar Boletos\"));\n        $this->Admin->elementosdePagina();\n        $this->set(\"cabeza\",$this->Admin->plantilla->renderizar());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n        $this->set(\"usuario\",$this->Admin->usuario->usuario);\n    }\n\n    function horarios(){\n        $this->Admin->titulo=\"Catalogo de Horarios\";\n        $this->Admin->ruta=Array(\n            Array(\"#\",\"Admin\"),\n            Array(\"#\",\"Catalogos\"),\n            Array(\"#\",\"Horarios\"));\n        $this->Admin->elementosdePagina();\n        $this->set(\"cabeza\",$this->Admin->plantilla->renderizar());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n        $this->set(\"usuario\",$this->Admin->usuario->usuario);\n    }\n\n    function lugar(){\n        $this->Admin->titulo=\"Catalogo de Lugares\";\n        $this->Admin->ruta=Array(\n            Array(\"#\",\"Admin\"),\n            Array(\"#\",\"Catalogos\"),\n            Array(\"#\",\"Lugares\"));\n        $this->Admin->elementosdePagina();\n        $this->set(\"cabeza\",$this->Admin->plantilla->renderizar());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n        $this->set(\"usuario\",$this->Admin->usuario->usuario);\n    }\n\n    function ponente(){\n        $this->Admin->titulo=\"Catalogo de Ponentes\";\n        $this->Admin->ruta=Array(\n            Array(\"#\",\"Admin\"),\n            Array(\"#\",\"Catalogos\"),\n            Array(\"#\",\"Ponentes\"));\n        $this->Admin->elementosdePagina();\n        $this->set(\"cabeza\",$this->Admin->plantilla->renderizar());\n        $this->set(\"pie\",$this->Admin->plantilla->pie());\n        $this->set(\"usuario\",$this->Admin->usuario->usuario);\n        $this->set(\"ponentes\",$this->Admin->obtenerPonentes());\n\n        if(isset($_POST['accc'])){\n\n\n        }\n    }\n\n}\n",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/admincontrol.php",
+			"file_size": 3290,
+			"file_write_time": 130712935799193892,
 			"settings":
 			{
-				"buffer_size": 1032,
+				"buffer_size": 3217,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro/index.php",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/admin.php",
 			"settings":
 			{
-				"buffer_size": 1531,
+				"buffer_size": 2401,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<?php\n\n?>",
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/pie.php",
-			"file_size": 9,
-			"file_write_time": 130709195783606900,
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/ponente.php",
 			"settings":
 			{
-				"buffer_size": 9,
+				"buffer_size": 2925,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "classes/modelo.class.php",
+			"settings":
+			{
+				"buffer_size": 143,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "classes/mysqldb.class.php",
+			"settings":
+			{
+				"buffer_size": 5043,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registrar.php",
+			"settings":
+			{
+				"buffer_size": 248,
 				"line_ending": "Windows"
 			}
 		},
@@ -347,50 +383,50 @@
 			}
 		},
 		{
-			"file": "modulos/validar.mod.php",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/horarios.php",
 			"settings":
 			{
-				"buffer_size": 1301,
+				"buffer_size": 17,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "bootstrap.php",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/lugar.php",
 			"settings":
 			{
-				"buffer_size": 6013,
+				"buffer_size": 16,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/encabezado.php",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/boletos.php",
 			"settings":
 			{
-				"buffer_size": 20,
+				"buffer_size": 21,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/nayma/formulario.php",
+			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/inicio.php",
 			"settings":
 			{
-				"buffer_size": 556,
+				"buffer_size": 15,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "classes/control.class.php",
+			"file": "plantillas/adminlte/php/tema.class.php",
 			"settings":
 			{
-				"buffer_size": 1123,
+				"buffer_size": 13289,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/naymacontrol.php",
+			"contents": "<?php\n\nclass Tema implements TemaBase{\n\n	protected $nombreApp;\n    protected $titulo;\n	protected $ruta;\n	protected $menu;\n	protected $html;\n    protected $skin;\n    protected $mensajes;\n    protected $notificaciones;\n    protected $tareas;\n    protected $datos_usuario;\n    protected $busqueda;\n    protected $piedePagina;\n\n\n    public function __get($property) {\n            if (property_exists($this, $property)) {\n                return $this->$property;\n            }\n    }\n\n    public function __set($property, $value) {\n        if (property_exists($this, $property)) {\n            $this->$property = $value;\n        }\n    }\n\n	public function __construct(){	\n	}\n\n\n	public function encabezado(){\n		$plantilla=RUTA_PLANTILLA_HTML;\n	return \"<!DOCTYPE html>\n	<html>\n	<head>\n    <meta charset='UTF-8'>\n    <title>\".$this->titulo.\"</title>\n    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>\n    <link href='\". RUTA_PLANTILLA_HTML .\"bootstrap/css/bootstrap.min.css' rel='stylesheet' type='text/css' />\n    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css' />\n    <link href='http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"dist/css/AdminLTE.min.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"dist/css/skins/_all-skins.min.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/iCheck/flat/blue.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/morris/morris.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/jvectormap/jquery-jvectormap-1.2.2.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/datepicker/datepicker3.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/daterangepicker/daterangepicker-bs3.css' rel='stylesheet' type='text/css' />\n    <link href='\". RUTA_PLANTILLA_HTML .\"plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' rel='stylesheet' type='text/css' />\n\n    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->\n    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->\n    <!--[if lt IE 9]>\n        <script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script>\n        <script src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js'></script>\n    <![endif]-->\n  </head>\n  <body class='\".$this->skin.\"'>\n  \";\n\n	}\n\n	public function pie(){\n\n		return \"   \n        <!-- jQuery 2.1.3 -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/jQuery/jQuery-2.1.3.min.js'></script>\n    <!-- jQuery UI 1.11.2 -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"http://code.jquery.com/ui/1.11.2/jquery-ui.min.js' type='text/javascript'></script>\n    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->\n    <script>\n      $.widget.bridge('uibutton', $.ui.button);\n    </script>\n    <!-- Bootstrap 3.3.2 JS -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"bootstrap/js/bootstrap.min.js' type='text/javascript'></script>    \n    <!-- Morris.js charts -->\n    <script src='http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js'></script>\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/morris/morris.min.js' type='text/javascript'></script>\n    <!-- Sparkline -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/sparkline/jquery.sparkline.min.js' type='text/javascript'></script>\n    <!-- jvectormap -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' type='text/javascript'></script>\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/jvectormap/jquery-jvectormap-world-mill-en.js' type='text/javascript'></script>\n    <!-- jQuery Knob Chart -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/knob/jquery.knob.js' type='text/javascript'></script>\n    <!-- daterangepicker -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/daterangepicker/daterangepicker.js' type='text/javascript'></script>\n    <!-- datepicker -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/datepicker/bootstrap-datepicker.js' type='text/javascript'></script>\n    <!-- Bootstrap WYSIHTML5 -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' type='text/javascript'></script>\n    <!-- iCheck -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/iCheck/icheck.min.js' type='text/javascript'></script>\n    <!-- Slimscroll -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/slimScroll/jquery.slimscroll.min.js' type='text/javascript'></script>\n    <!-- FastClick -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"plugins/fastclick/fastclick.min.js'></script>\n    <!-- AdminLTE App -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"dist/js/app.min.js' type='text/javascript'></script>\n\n    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"dist/js/pages/dashboard.js' type='text/javascript'></script>\n\n    <!-- AdminLTE for demo purposes -->\n    <script src='\".RUTA_PLANTILLA_HTML.\"dist/js/demo.js' type='text/javascript'></script>\n  </body>\n</html>\";\n\n	}\n  public function cerCont(){\n\n    return \"</section><!-- /.content -->\n      </div><!-- /.content-wrapper -->\n\";\n  }\n  public function footer(){\n\n    return \"\n\n      <footer class='main-footer'>\n        <div class='pull-right hidden-xs'>\n          <b>Version</b> 2.0\n        </div>\n        <strong>Copyright &copy; 2014-2015 <a href='http://almsaeedstudio.com'>TutziLAbs</a>.</strong> Todos los derechos reservados.\n      </footer>\n    </div><!-- ./wrapper -->\";\n  }\n\n    public function abrNav(){\n        return \" <!-- Site wrapper -->\n    <div class='wrapper'>\n      \n      <header class='main-header'>\n        <a href='#' class='logo'>\".$this->nombreApp.\"</a>\n        <!-- Header Navbar: style can be found in header.less -->\n        <nav class='navbar navbar-static-top' role='navigation'>\n          <!-- Sidebar toggle button-->\n          <a href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button'>\n            <span class='sr-only'>Toggle navigation</span>\n            <span class='icon-bar'></span>\n            <span class='icon-bar'></span>\n            <span class='icon-bar'></span>\n          </a>\n          <div class='navbar-custom-menu'>\n            <ul class='nav navbar-nav'>\";\n    }\n    public function cerNav(){\n\n        return \"\n        </ul>\n          </div>\n        </nav>\n      </header>\";\n    }\n\n    public function ahtml($contenido){\n        $this->html=$this->html.$contenido;\n    }\n\n    public function generarDatosUsuario(){\n        return \"<!-- User Account: style can be found in dropdown.less -->\n              <li class='dropdown user user-menu'>\n                <a href='#' class='dropdown-toggle' data-toggle='dropdown'>\n                  <img src='\".$this->datos_usuario['imagen'].\"' class='user-image' alt='User Image'/>\n                  <span class='hidden-xs'>\".$this->datos_usuario['usuario'].\"</span>\n                </a>\n                <ul class='dropdown-menu'>\n                  <!-- User image -->\n                  <li class='user-header'>\n                    <img src='\".$this->datos_usuario['imagen'].\"' class='img-circle' alt='User Image' />\n                    <p>\n                      \".$this->datos_usuario['usuario'].\" - \".$this->datos_usuario['desc1'].\"\n                      <small>\".$this->datos_usuario['desc2'].\"</small>\n                    </p>\n                  </li>\n                  <!-- Menu Body -->\n                  <li class='user-body'>\n                    <div class='col-xs-4 text-center'>\n                      <a href='\".$this->datos_usuario['link1url'].\"'>\".$this->datos_usuario['link1'].\"</a>\n                    </div>\n                    <div class='col-xs-4 text-center'>\n                      <a href='\".$this->datos_usuario['link2url'].\"'>\".$this->datos_usuario['link2'].\"</a>\n                    </div>\n                    <div class='col-xs-4 text-center'>\n                      <a href='\".$this->datos_usuario['link3url'].\"'>\".$this->datos_usuario['link3'].\"</a>\n                    </div>\n                  </li>\n                  <!-- Menu Footer-->\n                  <li class='user-footer'>\n                    <div class='pull-left'>\n                      <a href='\".$this->datos_usuario['perfil'].\"' class='btn btn-default btn-flat'>Perfil</a>\n                    </div>\n                    <div class='pull-right'>\n                      <a href='\".$this->datos_usuario['logout'].\"' class='btn btn-default btn-flat'>Salir</a>\n                    </div>\n                  </li>\n                </ul>\n              </li>\n            \";\n    }\n    public function abrSidebar()\n    {\n        # code...\n        return \"\n <!-- Left side column. contains the sidebar -->\n      <aside class='main-sidebar'>\n        <!-- sidebar: style can be found in sidebar.less -->\n        <section class='sidebar'>\n          <!-- Sidebar user panel -->\n        \";\n    }\n    public function infoUsuLat(){\n      return \"<div class='user-panel'><div class='pull-left image'>\n              <img src='\".RUTA_PLANTILLA_HTML.\"dist/img/user2-160x160.jpg' class='img-circle' alt='User Image' />\n            </div>\n            <div class='pull-left info'>\n              <p>Alexander Pierce</p>\n\n              <a href='#'><i class='fa fa-circle text-success'></i> Online</a>\n            </div>\n          </div>\";\n    }\n\n    public function abrBusqueda(){\n      return \"<!-- search form -->\n          <form action='#' method='get' class='sidebar-form'>\n            <div class='input-group'>\n              <input type='text' name='q' class='form-control' placeholder='Search...'/>\n              <span class='input-group-btn'>\n                <button type='submit' name='seach' id='search-btn' class='btn btn-flat'><i class='fa fa-search'></i></button>\n              </span>\n            </div>\n          </form>\n          <!-- /.search form -->\";\n    }\n    public function abrMenu(){\n        $code=\"<ul class='sidebar-menu'>\";\n        //var_dump($this->menu);\n        \n        \n        \n          for($i=0; $i< count($this->menu);$i++){\n           \n          switch ($this->menu[$i][0]) {\n            case 'separador':\n              # code...\n              $code.=\"<li class='header'>\".$this->menu[$i][1].\"</li>\";\n              break;\n            \n            case 'sensillo':\n              # code...\n              $code.=\"<li><a href='\".$this->menu[$i][1].\"'><i class='\".$this->menu[$i][2].\"'></i>\".$this->menu[$i][3].\"</a></li>\";\n              break;\n            \n            case 'multiple':\n              # code...\n              # \n              $code.=\"<li class='treeview'>\n              <a href='\".$this->menu[$i][1].\"'>\n                <i class='\".$this->menu[$i][2].\"'></i> <span>\".$this->menu[$i][3].\"</span>\n                <i class='fa fa-angle-left pull-right'></i>\n              </a>\n              <ul class='treeview-menu'>\n              \";\n              for($x=0;$x<count($this->menu[$i][4]);$x++){\n                $code.=\"<li><a href='\".$this->menu[$i][4][$x][0].\"'><i class='\".$this->menu[$i][4][$x][1].\"'></i>\".$this->menu[$i][4][$x][2].\"</a></li>\";\n              }\n              $code.=\"</ul></li>\";\n              break;\n          }\n          \n          \n        }\n\n          return $code;\n        \n    }\n\n    public function cerSidebar(){\n        return \"\n        </section>\n        <!-- /.sidebar -->\n      </aside>\n\n        \";\n    }\n    public function generarScrum(){\n      $prep=\"\";\n      for ($i=0; $i<count($this->ruta);$i++){\n        if($i=(count($this->ruta)-1)){\n          $prep.=\"<li class='active'> \".$this->ruta[$i][1].\"</li>\";\n        }else{\n        $prep.=\"<li><a href='\".$this->ruta[$i][0].\"'>\".$this->ruta[$i][1].\"</a></li>\"\n        }\n      }\n      return $prep;\n    }\n    public function preContenido(){\n\n        return \"\n<!-- =============================================== -->\n\n      <!-- Content Wrapper. Contains page content -->\n      <div class='content-wrapper'>\n        <!-- Content Header (Page header) -->\n        <section class='content-header'>\n          <h1>\n            \".$this->titulo.\"\n            <small>Descripcion</small>\n          </h1>\n          <ol class='breadcrumb'>\n            \".$this->generarScrum().\"\n          </ol>\n        </section>\n\n        <!-- Main content -->\n        <section class='content'>\n        \";\n    }\n\n	public function renderizar(){\n        $this->ahtml($this->encabezado());\n\n        $this->ahtml($this->abrNav());\n        if(isset($this->mensajes)){\n\n        }\n        if(isset($this->notificaciones)){\n\n\n        }\n        if(isset($this->tareas)){\n\n        }\n        if(isset($this->datos_usuario)){\n            $this->ahtml($this->generarDatosUsuario());\n\n        }\n        $this->ahtml($this->cerNav());\n        $this->ahtml($this->abrSidebar());\n\n        if(isset($this->datos_usuario)){\n          $this->ahtml($this->infoUsuLat());\n        }\n\n        if(isset($this->busqueda)){\n          $this->ahtml($this->abrBusqueda());\n        }\n        \n\n        if(isset($this->menu)){\n          $this->ahtml($this->abrMenu());\n        }\n\n        $this->ahtml($this->cerSidebar());\n        $this->ahtml($this->preContenido());\n\n        return $this->html;\n\n	}\n\n\n}",
 			"settings":
 			{
-				"buffer_size": 1873,
+				"buffer_size": 13430,
 				"line_ending": "Windows"
 			}
 		}
@@ -491,22 +527,37 @@
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/configuracion",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/lenguaje",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/classes",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos"
 	],
 	"file_history":
 	[
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/voleto",
+		"/C/mw2/repz.ini",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/plantillas/adminlte/php/tema.class.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/naymacontrol.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro/pie.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/admincontrol.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/correo.mod.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/mail/index.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/mail.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/mailcontrol.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/registrocontrol.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/classes/control.class.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/nayma/formulario.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/encabezado.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/bootstrap.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/validar.mod.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registro.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/encabezado.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/pie.php",
+		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro/encabezado.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro/index.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/sftp-config.json",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/naymacontrol.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/nayma/formulario.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/iniciocontrol.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/configuracion/configuracion.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/nayma/pie.php",
@@ -522,15 +573,12 @@
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/lenguaje/es.ini",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/lenguaje/en.ini",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/lenguaje.mod.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/validar.mod.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/correo.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/fax.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/qr.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/sms.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/usuario.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/pdf.mod.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/archivo.mod.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/classes/control.class.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/lenguage/en.ini",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/lenguage/es.ini",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/modulos/qrcode/phpqrcode.php",
@@ -540,19 +588,14 @@
 		"/C/Users/medanny/AppData/Local/Temp/Temp1_phpqrcode-2010100721_1.1.4.zip/phpqrcode/phpqrcode.php",
 		"/C/Users/medanny/AppData/Local/Temp/Temp1_phpqrcode-2010100721_1.1.4.zip/phpqrcode/qrconst.php",
 		"/C/Users/medanny/AppData/Local/Temp/Temp1_phpqrcode-2010100721_1.1.4.zip/phpqrcode/qrtools.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/pie.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/pie.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/encabezado.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/encabezado.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/plantillas/temabase.interfaz.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/temporales/archivos_subidos/hello.txt",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/ponente.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/gracias.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/admin.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registrar.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/admincontrol.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/asistente.php",
-		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/plantillas/adminlte/php/tema.class.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/index.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/tutzifw/classes/mysqldb.class.php",
 		"/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/inicio.php",
@@ -620,17 +663,7 @@
 		"/C/TUTZILABS/FW/app/views/main/registrarse.php",
 		"/C/TUTZILABS/FW/app/controllers/catalogoscontroller.php",
 		"/C/TUTZILABS/FW/app/models/usuario.php",
-		"/C/TUTZILABS/FW/app/models/estadistica.php",
-		"/C/TUTZILABS/FW/app/models/catalogo.php",
-		"/C/TUTZILABS/FW/app/controllers/usuarioscontroller.php",
-		"/C/TUTZILABS/FW/app/controllers/estadisticascontroller.php",
-		"/C/TUTZILABS/FW/app/views/main/header.php",
-		"/C/TUTZILABS/FW/app/views/main/footer.php",
-		"/C/TUTZILABS/BOCHITA/LONEDATA/trailer-details.php",
-		"/C/TUTZILABS/FW/tutzifw/class/process.class.php",
-		"/C/TUTZILABS/BOCHITA/poRonnie/invoice/tools.class.php",
-		"/C/TUTZILABS/BOCHITA/poRonnie/class/tools.class.php",
-		"/C/TUTZILABS/FW/tutzifw/class/sqlquery.class.php"
+		"/C/TUTZILABS/FW/app/models/estadistica.php"
 	],
 	"find":
 	{
@@ -649,6 +682,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\"",
+			"POST",
 			"pocnencias3",
 			"Ponencias",
 			"escuela",
@@ -759,6 +794,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'",
+			"_POST",
 			"dominio",
 			"valor",
 			"texto",
@@ -810,7 +847,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -841,51 +878,51 @@
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -901,27 +938,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 190.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/registrocontrol.php",
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/admincontrol.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1032,
+						"buffer_size": 3217,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								248,
-								248
+								3196,
+								3196
 							]
 						],
 						"settings":
@@ -930,163 +967,165 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content"
-							],
-							"function_name_status_row": 12,
-							"incomplete_sync": null,
-							"open_with_edit": true,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 139.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registro/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1531,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1002,
-								1002
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"function_name_status_row": 87,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1292.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/admin.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								408,
+								408
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_square_content"
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
-							"function_name_status_row": 46,
+							"function_name_status_row": 28,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 380.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1094,19 +1133,19 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/registrar/pie.php",
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/ponente.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9,
+						"buffer_size": 2925,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6,
-								6
+								490,
+								490
 							]
 						],
 						"settings":
@@ -1115,123 +1154,124 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"function_name_status_row": 1,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registro.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 368,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								364,
-								364
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 10,
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "classes/modelo.class.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 143,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								108,
+								86
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -1242,30 +1282,29 @@
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_single_quote_content"
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
-							"function_name_status_row": 20,
+							"function_name_status_row": 5,
 							"incomplete_sync": null,
-							"open_with_edit": true,
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.tmLanguage"
@@ -1279,19 +1318,19 @@
 				},
 				{
 					"buffer": 5,
-					"file": "modulos/validar.mod.php",
+					"file": "classes/mysqldb.class.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1301,
+						"buffer_size": 5043,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								123,
-								123
+								857,
+								858
 							]
 						],
 						"settings":
@@ -1300,31 +1339,31 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -1335,311 +1374,34 @@
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content"
-							],
-							"function_name_status_row": 5,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 144.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "bootstrap.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6013,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3397,
-								3397
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content"
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
-							"function_name_status_row": 122,
+							"function_name_status_row": 31,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1989.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/encabezado.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 20,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6,
-								6
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content"
-							],
-							"function_name_status_row": 1,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/nayma/formulario.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 556,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								50,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content"
-							],
-							"function_name_status_row": 0,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1649,53 +1411,52 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "classes/control.class.php",
+					"buffer": 6,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registrar.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1123,
+						"buffer_size": 248,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1088,
-								1088
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"BracketHighlighterBusy": false,
-							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -1706,28 +1467,28 @@
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_single_quote_content"
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
-							"function_name_status_row": 47,
+							"function_name_status_row": 0,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
@@ -1738,16 +1499,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/controladores/naymacontrol.php",
+					"buffer": 7,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/modelos/registro.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1873,
+						"buffer_size": 368,
 						"regions":
 						{
 						},
@@ -1764,31 +1525,31 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -1799,40 +1560,596 @@
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_single_quote_content"
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"function_name_status_row": 0,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 3,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/horarios.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 0,
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/lugar.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 0,
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/boletos.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21,
+								21
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 0,
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/C/Users/medanny/Documents/GitHub/tutziFW/app/vistas/admin/inicio.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 0,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "plantillas/adminlte/php/tema.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11816,
+								11816
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 294,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5700.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13430,
+								13430
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"function_name_status_row": 366,
+							"incomplete_sync": null,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
 					"type": "text"
 				}
 			]

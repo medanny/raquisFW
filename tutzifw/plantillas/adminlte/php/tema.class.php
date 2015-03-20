@@ -165,37 +165,37 @@ class Tema implements TemaBase{
         return "<!-- User Account: style can be found in dropdown.less -->
               <li class='dropdown user user-menu'>
                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                  <img src='".RUTA_PLANTILLA_HTML."dist/img/user2-160x160.jpg' class='user-image' alt='User Image'/>
+                  <img src='".$this->datos_usuario['imagen']."' class='user-image' alt='User Image'/>
                   <span class='hidden-xs'>".$this->datos_usuario['usuario']."</span>
                 </a>
                 <ul class='dropdown-menu'>
                   <!-- User image -->
                   <li class='user-header'>
-                    <img src='".RUTA_PLANTILLA_HTML."dist/img/user2-160x160.jpg' class='img-circle' alt='User Image' />
+                    <img src='".$this->datos_usuario['imagen']."' class='img-circle' alt='User Image' />
                     <p>
-                      Nombre de Usuario - Descripcion
-                      <small>Descripcion 2</small>
+                      ".$this->datos_usuario['usuario']." - ".$this->datos_usuario['desc1']."
+                      <small>".$this->datos_usuario['desc2']."</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
                   <li class='user-body'>
                     <div class='col-xs-4 text-center'>
-                      <a href='#'>Menu 1</a>
+                      <a href='".$this->datos_usuario['link1url']."'>".$this->datos_usuario['link1']."</a>
                     </div>
                     <div class='col-xs-4 text-center'>
-                      <a href='#'>Menu 2</a>
+                      <a href='".$this->datos_usuario['link2url']."'>".$this->datos_usuario['link2']."</a>
                     </div>
                     <div class='col-xs-4 text-center'>
-                      <a href='#'>Menu 3</a>
+                      <a href='".$this->datos_usuario['link3url']."'>".$this->datos_usuario['link3']."</a>
                     </div>
                   </li>
                   <!-- Menu Footer-->
                   <li class='user-footer'>
                     <div class='pull-left'>
-                      <a href='#' class='btn btn-default btn-flat'>Perfil</a>
+                      <a href='".$this->datos_usuario['perfil']."' class='btn btn-default btn-flat'>Perfil</a>
                     </div>
                     <div class='pull-right'>
-                      <a href='#' class='btn btn-default btn-flat'>Salir</a>
+                      <a href='".$this->datos_usuario['logout']."' class='btn btn-default btn-flat'>Salir</a>
                     </div>
                   </li>
                 </ul>
@@ -213,6 +213,72 @@ class Tema implements TemaBase{
           <!-- Sidebar user panel -->
         ";
     }
+    public function infoUsuLat(){
+      return "<div class='user-panel'><div class='pull-left image'>
+              <img src='".RUTA_PLANTILLA_HTML."dist/img/user2-160x160.jpg' class='img-circle' alt='User Image' />
+            </div>
+            <div class='pull-left info'>
+              <p>Alexander Pierce</p>
+
+              <a href='#'><i class='fa fa-circle text-success'></i> Online</a>
+            </div>
+          </div>";
+    }
+
+    public function abrBusqueda(){
+      return "<!-- search form -->
+          <form action='#' method='get' class='sidebar-form'>
+            <div class='input-group'>
+              <input type='text' name='q' class='form-control' placeholder='Search...'/>
+              <span class='input-group-btn'>
+                <button type='submit' name='seach' id='search-btn' class='btn btn-flat'><i class='fa fa-search'></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->";
+    }
+    public function abrMenu(){
+        $code="<ul class='sidebar-menu'>";
+        //var_dump($this->menu);
+        
+        
+        
+          for($i=0; $i< count($this->menu);$i++){
+           
+          switch ($this->menu[$i][0]) {
+            case 'separador':
+              # code...
+              $code.="<li class='header'>".$this->menu[$i][1]."</li>";
+              break;
+            
+            case 'sensillo':
+              # code...
+              $code.="<li><a href='".$this->menu[$i][1]."'><i class='".$this->menu[$i][2]."'></i>".$this->menu[$i][3]."</a></li>";
+              break;
+            
+            case 'multiple':
+              # code...
+              # 
+              $code.="<li class='treeview'>
+              <a href='".$this->menu[$i][1]."'>
+                <i class='".$this->menu[$i][2]."'></i> <span>".$this->menu[$i][3]."</span>
+                <i class='fa fa-angle-left pull-right'></i>
+              </a>
+              <ul class='treeview-menu'>
+              ";
+              for($x=0;$x<count($this->menu[$i][4]);$x++){
+                $code.="<li><a href='".$this->menu[$i][4][$x][0]."'><i class='".$this->menu[$i][4][$x][1]."'></i>".$this->menu[$i][4][$x][2]."</a></li>";
+              }
+              $code.="</ul></li>";
+              break;
+          }
+          
+          
+        }
+
+          return $code;
+        
+    }
 
     public function cerSidebar(){
         return "
@@ -222,7 +288,14 @@ class Tema implements TemaBase{
 
         ";
     }
-
+    public function generarScrum(){
+      $prep="";
+      for ($i=0; $i<count($this->ruta);$i++){
+          $prep.="<li class='active'> ".$this->ruta[$i][1]."</li>";
+        
+      }
+      return $prep;
+    }
     public function preContenido(){
 
         return "
@@ -233,13 +306,11 @@ class Tema implements TemaBase{
         <!-- Content Header (Page header) -->
         <section class='content-header'>
           <h1>
-            Titulo
+            ".$this->titulo."
             <small>Descripcion</small>
           </h1>
           <ol class='breadcrumb'>
-            <li><a href='#'><i class='fa fa-dashboard'></i> Nivel 1</a></li>
-            <li><a href='#'>Nivel 2</a></li>
-            <li class='active'> Nivel 3</li>
+            ".$this->generarScrum()."
           </ol>
         </section>
 
@@ -270,16 +341,16 @@ class Tema implements TemaBase{
         $this->ahtml($this->abrSidebar());
 
         if(isset($this->datos_usuario)){
-
+          $this->ahtml($this->infoUsuLat());
         }
 
         if(isset($this->busqueda)){
-
+          $this->ahtml($this->abrBusqueda());
         }
         
 
         if(isset($this->menu)){
-
+          $this->ahtml($this->abrMenu());
         }
 
         $this->ahtml($this->cerSidebar());
