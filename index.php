@@ -13,7 +13,7 @@ define('ROOT', dirname(realpath(__FILE__)));
 $url = isset($_GET['url'])? $_GET['url'] : null ;
 
 /* Cargar la configuracion. */
-require_once (ROOT . DS . 'app' . DS . 'conf' . DS . 'conf.php');
+require_once (ROOT . DS . 'app' . DS . 'app.conf');
 
 /**
  * Verifica en la configuracion, si la aplicacion esta en desarrollo, si lo esta
@@ -140,7 +140,7 @@ define('BASE_PATH', realpath(dirname(__FILE__)));
 
 function my_autoloader($class)
 {
-    $filename = BASE_PATH . '/' . str_replace('\\', '/', $class) . '.php';
+    $filename = BASE_PATH . '/' . str_replace('\\', '/', strtolower($class)) . '.php';
     include($filename);
 }
 spl_autoload_register('my_autoloader');
