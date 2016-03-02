@@ -12,7 +12,7 @@
 
 define('CONTROL_PRINCIPAL','login'); //Nombre del controlador principal
 define('PLANTILLA','adminlte'); // Nombre del Template
-define('DOMINIO','http://raquis.tutzilabs.com.mx/raquis/FW'); //nombre de dominio
+define('DOMINIO','http://raquis.tutzilabs.com.mx/raquisFW'); //nombre de dominio
 define('ANVITO_DESARROLLO',true); // si esta en desarrollo la aplicacion (TRUE o FALSE)
 define('RUTA_CLASE', ROOT . DS . 'tutzifw' . DS . 'classes' . DS);
 define('RUTA_MODULOS', ROOT . DS . 'tutzifw' . DS . 'modulos' . DS);
