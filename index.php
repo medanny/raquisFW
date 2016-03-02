@@ -9,7 +9,8 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(realpath(__FILE__)));
 
 /* Requerir el url, por medio de $GET, (este viene del htaccess). */
-$url = $_GET['url'];
+
+$url = isset($_GET['url'])? $_GET['url'] : null ;
 
 /* Cargar la configuracion. */
 require_once (ROOT . DS . 'app' . DS . 'conf' . DS . 'conf.php');
@@ -77,12 +78,13 @@ function unregistrarGlobales() {
  */
 function callHook() {
     global $url;
+    
     $urlArray = array();
-    $urlArray = explode("/", $url);
-    $campos = count($urlArray);
+    if ($url) {
 
-    //echo $campos;
-    if ($campos >= 1) {
+        
+        $urlArray = explode("/", $url);
+        $campos = count($urlArray);
         $control = $urlArray[0];
         array_shift($urlArray);
         if (isset($urlArray[0])) {
@@ -112,9 +114,9 @@ function callHook() {
     } else {
         $control = CONTROL_PRINCIPAL;
         $accion = "index";
-        $queryString = $urlArray;
+        $queryString = Array();
         $nombreControl = $control;
-        $control = $control;
+        $control = ucwords($control);
         $modelo = $control;
         $control.= 'Control';
         $control="\app\controles\\".$control;

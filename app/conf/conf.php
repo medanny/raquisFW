@@ -10,7 +10,7 @@
   //---------------CONSTANTES GENERALES------------------\\
  //-------------------------------------------------------\\
 
-define('CONTROL_PRINCIPAL','admin'); //Nombre del controlador principal
+define('CONTROL_PRINCIPAL','login'); //Nombre del controlador principal
 define('PLANTILLA','adminlte'); // Nombre del Template
 define('DOMINIO','http://localhost/raquis/'); //nombre de dominio
 define('ANVITO_DESARROLLO',true); // si esta en desarrollo la aplicacion (TRUE o FALSE)

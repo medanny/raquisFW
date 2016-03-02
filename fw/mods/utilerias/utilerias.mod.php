@@ -121,4 +121,27 @@ class Utilerias
         }
         return $pass;
     }
+
+
+    public static function borrarTextoEntre($princio, $fin, $string){
+        $principioPos = strpos($string, $principio);
+        $finPos = strpos($string, $fin);
+        if ($principioPos === false || $finPos === false) {
+            return $string;
+        }
+        $textToDelete = substr($string, $principioPos, ($finPos + strlen($fin)) - $principioPos);
+        return str_replace($textToDelete, '', $string);
+    }
+
+    public static function textoEntre($string, $start, $end){ // string, incio, final
+    $string = " ".$string;
+    $ini = strpos($string,$start);
+    if ($ini == 0) return "";
+    $ini += strlen($start);   
+    $len = strpos($string,$end,$ini) - $ini;
+    return substr($string,$ini,$len);
+}
+
+
+
 }
