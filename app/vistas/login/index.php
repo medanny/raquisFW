@@ -5,7 +5,7 @@ $handdle= new $template("Hola mundo");
 $handdle -> asignarValor("skin","hold-transition login-page");
 
 $login_parametros=array(
-  "titulo" => "Mega Sistema",
+  "titulo" => "Mega Sistema 14",
   "descripcion" => "Bienvenido, porfavor inicie session para continuar.",
   "input_1_tipo" => "text",
   "input_1_placeholder" => "Usuario",
@@ -17,6 +17,3 @@ $login_parametros=array(
   );
 $handdle -> asignarParcial("content","login",$login_parametros);
 $handdle -> mostrar();
-
-
-?>
