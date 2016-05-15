@@ -8,20 +8,18 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(realpath(__FILE__)));
 
-/* Requerir el url, por medio de $GET, (este viene del htaccess). */
-/* sample comment */
-$url = isset($_GET['url'])? $_GET['url'] : null ;
-
 /* Cargar la configuracion. */
 require_once (ROOT . DS . 'app' . DS . 'app.conf');
+
+/* Requerir el url, por medio de $GET, (este viene del htaccess). */
+$url = isset($_GET['url'])? $_GET['url'] : null ;
 
 /**
  * Verifica en la configuracion, si la aplicacion esta en desarrollo, si lo esta
  * muestra errores, si no guarda logs de los errores.
  */
-
 function setReportes() {
-    if (ANVITO_DESARROLLO == true) {
+    if (MODO_DESARROLLO == true) {
         error_reporting(E_ALL);
         ini_set('display_errors', 'On');
     } else {
@@ -87,7 +85,7 @@ function callHook() {
         $campos = count($urlArray);
         $control = $urlArray[0];
         array_shift($urlArray);
-        if (isset($urlArray[0])) {
+        if (isset($urlArray[0]) && $urlArray[0]!="") {
             $accion = $urlArray[0];
             array_shift($urlArray);
             $queryString = $urlArray;
@@ -147,5 +145,4 @@ spl_autoload_register('my_autoloader');
 
 setReportes();
 removeMagicQuotes();
-unregistrarGlobales();
 callHook();

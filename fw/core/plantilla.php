@@ -15,8 +15,8 @@ class Plantilla {
 
 	/**
 	 * Set es usado para asignar variables a vistas.
-	 * @param String $name  el nombre de la variable.
-	 * @param String $value el valor de la variable.
+	 * @param String $nombre  el nombre de la variable.
+	 * @param String $valor el valor de la variable.
 	 */
 	function set($nombre,$valor) {
 		$this->variables[$nombre] = $valor;
@@ -25,7 +25,6 @@ class Plantilla {
 	/**
 	 * Esta clase se clase se encarga, de renderizar la vista general de la persona,
 	 */
-
     function render() {
 		extract($this->variables);
 
@@ -36,7 +35,6 @@ class Plantilla {
 			}
 
         include (ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . $this->_accion . '.php');
-
 			if (file_exists(ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . 'pie.php')) {
 				include (ROOT . DS . 'app' . DS . 'vistas' . DS . $this->_control . DS . 'pie.php');
 			} else {

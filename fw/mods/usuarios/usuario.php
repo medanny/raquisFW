@@ -1,5 +1,22 @@
 <?php
-namespace fw\core\usuarios;
+
+namespace fw\mods\usuarios;
+use fw\mods\sesiones\Sesion;
+use fw\mods\db\mainDBDriver;
+
+/**
+ * Class Usuario, se encarga de gestionar Usuarios.
+ * 
+ * Class Usuario traba jo en conjunto con la clase de sessiones,
+ * para gestionar todo lo que tiene que ver con logins y usuarios.
+ * 
+ * Ejemplo de uso:
+ *  Para utilzar esta clase solo es necesario inicialarla en un objeto:
+ * 
+ * $gestorUsuarios = new Usuario();
+ *
+ * @package fw\core\usuarios
+ */
 class Usuario
 {
     public $id;
@@ -7,35 +24,38 @@ class Usuario
     public $nivel;
     public $info_usuario;
     public $sesion_activa;
+    public $sesion;
+    public $mysql;
     
-    function __construct() {
-        $this->verificarLogin();
+    function __construct($_verLogin = true) {
+        $this->sesion = new Sesion();
+        $this->mysql =  new mainDBDriver(BD_DRIVER);
+        if($_verLogin){
+            $this->verificarLogin();
+        }
 
     }
     
     function verificarLogin() {
-        global $sesion;
-
-
-        if ($sesion->verificar("id") && $sesion->verificar("usuario")) {
+        if ($this->sesion->verificar("id") && $this->sesion->verificar("usuario")) {
            
-            if ($this->confirmarId($sesion->valor("usuario"), $sesion->valor("id"))) {
+            if ($this->confirmarId($this->sesion->valor("usuario"), $this->sesion->valor("id"))) {
                
                 $this->sesion_activa = TRUE;
-                $this->usuario = $sesion->valor("usuario");
+                $this->usuario = $this->sesion->valor("usuario");
                 $this->info_usuario = $this->obtenerDatosUsuario($this->usuario);
+                return EXITO;
             } else {
-                $sesion->destruir();
+                $this->sesion->destruir();
                 $this->sesion_activa = FALSE;
             }
         }else{
-
+            return FRACASO;
         }
     }
     
     function confirmarId($usuario, $id) {
-        global $mysql;
-        $result = $mysql->aArray($mysql->query("SELECT * FROM ".TABLA_USUARIOS." WHERE ".CAMPO_USUARIO ." = '".$usuario."'"));
+        $result = $this->mysql->aArray($this->mysql->query("SELECT * FROM ".TABLA_USUARIOS." WHERE ".CAMPO_USUARIO ." = '".$usuario."'"));
         $nrows = count($result);
         if (!$result || $nrows < 1) {
             return false;
@@ -48,9 +68,8 @@ class Usuario
     }
     
     function obtenerDatosUsuario($usuario) {
-        global $mysql;
         $q = "SELECT * FROM " . TABLA_USUARIOS . " WHERE " . CAMPO_USUARIO . " = '$usuario'";
-        $result = $mysql->aArray($mysql->query($q));
+        $result = $this->mysql->aArray($this->mysql->query($q));
         $nrows = count($result);
         if (!$result || $nrows < 1) {
             return NULL;
@@ -59,24 +78,23 @@ class Usuario
     }
     
     function confirmarUsuarioContrasena($usuario, $contrasena) {
-        global $mysql,$sesion;
         $q = "SELECT * FROM " . TABLA_USUARIOS . " WHERE " . CAMPO_USUARIO . " = '$usuario'";
-        $result = $mysql->aArray($mysql->query($q));
+        $result = $this->mysql->aArray($this->mysql->query($q));
         $nrows = count($result);
         
         if (!$result || $nrows < 1) {
-            $sesion->asignar("error","El usuario no existe en nuestra base de datos.");
-            return 1;
+            $this->sesion->asignar("error","El usuario no existe en nuestra base de datos.");
+            return USUARIO_NO_EXISTE;
              //el usuario no existe.
             
         } else if ($contrasena == $result[0][CAMPO_CONTRASENA]) {
 
-            return 0;
+            return EXITO;
              // usuario validado EXITO!
             
         } else {
-            $sesion->asignar("error","La contrasena especificada no es correcta.");
-            return 2;
+            $this->sesion->asignar("error","La contrasena especificada no es correcta.");
+            return CONTRASENA_INCORRECTA;
              //contrasena incorrecta.
             
         }
@@ -84,21 +102,20 @@ class Usuario
     
     function inciarSesion($usuario, $contrasena) {
         echo "Verificando Session<br>";
-        global $sesion, $mysql;
         $resultado = $this->confirmarUsuarioContrasena($usuario, md5($contrasena));
-        if ($resultado >= 1) {
+        if ($resultado != EXITO) {
             return $resultado;
         }
         $this->info_usuario = $this->obtenerDatosUsuario($usuario);
         $this->usuario = $this->info_usuario[0][CAMPO_USUARIO];
-        $sesion->asignar("usuario", $this->usuario);
+        $this->sesion->asignar("usuario", $this->usuario);
         $this->id = $this->info_usuario[0][CAMPO_ID_USUARIO];
-        $sesion->asignar("id", $this->id);
+        $this->sesion->asignar("id", $this->id);
         $this->nivel = $this->info_usuario[0][CAMPO_PERMISOS];
         $this->sesion_activa = TRUE;
 
-        echo "Usuario:".$sesion->valor("usuario")."<br>";
-        echo "Id:".$sesion->valor("id");
+        echo "Usuario:".$this->sesion->valor("usuario")."<br>";
+        echo "Id:".$this->sesion->valor("id");
         return $resultado;
 
 
@@ -106,7 +123,7 @@ class Usuario
     }
     
     function terminarSesion() {
-        $sesion->destruir();
+        $this->sesion->destruir();
         $this->sesion_activa = FALSE;
     }
 }

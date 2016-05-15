@@ -1,0 +1,16 @@
+<ul class="sidebar-menu">
+    {{ARTICULO_MENU}}
+    <li class="{CLASE}">
+        <a href="{URL}">
+            <i class="{ICONO}"></i> <span>{TEXTO}</span>
+        </a>
+        {{SUB_MENU}}
+        <ul class="{CLASE}">
+            {{ARTICULO_SUB_MENU}}
+            <li><a href="{URL}"><i class="{ICONO}"></i> {TEXTO}</a></li>
+            {{/ARTICULO_SUB_MENU}}
+        </ul>
+        {{/SUB_MENU}}
+    </li>
+    {{/ARTICULO_MENU}}
+</ul>

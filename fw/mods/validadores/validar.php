@@ -1,5 +1,5 @@
 <?php
-namespace fw\core\validadores;
+namespace fw\mods\validadores;
 class Validar {
 
 	public static function entre($valor,$min,$max){
@@ -11,7 +11,6 @@ class Validar {
 	}
 
 	public static function mayor($valor,$valor_base){
-
 		if($valor>$valor_base){
 			return true;
 		}else{
@@ -21,10 +20,19 @@ class Validar {
 
 	public static function vacio($valor){
 
-		if($valor==""){
-			return TRUE;
+		if( $valor == null || $valor==""){
+			return true;
 		}else{
-			return FALSE;
+			return false;
+		}
+	}
+
+	public static function noVacio($valor){
+
+		if( $valor != null || $valor != ""){
+			return true;
+		}else{
+			throw new \Exception("El valor no puede estar vacio.");
 		}
 	}
 

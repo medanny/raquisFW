@@ -1,8 +1,7 @@
 <?php
 
-
-include RUTA_MODULOS."qrcode/qrlib.php";
 namespace fw\core\qrs;
+include_once (RUTA_MODULOS."qrs/qrcode/qrlib.php");
 class Qr{
 
 

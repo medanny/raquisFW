@@ -21,9 +21,19 @@ class mainDBDriver {
     public function q($stm){
         unset($this->result);
         $this->result=$this->driver->con->prepare($stm);
-        $this->result->execute();
-        $last_query=$stm;
+        $result = $this->result->execute();
+        $this->last_query=$stm;
         $this->n_querys++;
+        return $result;
+    }
+
+    public function query($stm){
+        unset($this->result);
+        $this->result=$this->driver->con->prepare($stm);
+        $result = $this->result->execute();
+        $this->last_query=$stm;
+        $this->n_querys++;
+        return $result;
     }
 
     public function aArray(){

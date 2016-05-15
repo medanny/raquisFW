@@ -9,13 +9,13 @@
  *
  */
 
-namespace fw\core\utilerias;
+namespace fw\mods\utilerias;
 class Utilerias
 {
     /**
      * redireccionamiento seguro es usado para poder redireccionar, a una nueva pagina y no
-     * recibir errores de headers already sent, ect...
-     * @param  String $url url de la pagina a redireccionar.
+     * recibir erroress de headers already sent, ect...
+     * @param  String $url url de  la pagina a redireccionar.
      */
     public static function redirectSeguro($url) {
         
