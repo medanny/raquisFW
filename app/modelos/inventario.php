@@ -1,16 +1,21 @@
 <?php
 namespace app\modelos;
 use fw\core\Modelo;
+use fw\mods\catalogos\Catalogo;
 use fw\mods\plantillas\Constructor;
 use fw\mods\usuarios\Usuario;
 
 class Inventario extends Modelo{
 
     protected $usuario;
-    protected $plantilla;
-
+    public $plantilla;
+    public $catalogo;
+    public $archivo;
     public function __construct(){
         $this->usuario = new Usuario();
+    }
+    public function crearCatalogo($_tabla,$_id, $_archivo = null){
+        $this->catalogo = new Catalogo($_tabla,$_id , $_archivo);
     }
     public function iniciar(){
         $this->plantilla = new Constructor("Hola mundo");
@@ -24,27 +29,28 @@ class Inventario extends Modelo{
         $this->plantilla->asignarParcial("sidebar","sidebar",Array());
         $datos_contenido=Array("nombre_pagina" => "Pagina con caja.", "descripcion_pagina"=>"Bienvenido");
         $this->plantilla->asignarParcial("content","content",$datos_contenido);
-        $datos_cdc['cdc_titulo']="Caja de Contenido.";
-        $datos_cdc['cdc_contenido']="Contenido.";
-        $datos_cdc['cdc_footer']="Footer.";
-        $this->plantilla->asignarParcial("contenido_principal", "caja_de_contenido", $datos_cdc);
         $this->plantilla->asignarParcial("menu", "menu_simple", Array("articulo_menu" => $this->getMenu()));
 
-        $this->plantilla->mostrar();
     }
-
     public function getMenu(){
+        //crear menu
         $menu[]=Array(
             "clase"=>"",
-            "url"=>"#",
+            "url"=>$this->archivo."articulo",
             "icono"=>"fa fa-book",
-            "texto"=>"Usuario"
+            "texto"=>"Articulos"
         );
         $menu[]=Array(
             "clase"=>"",
-            "url"=>"#",
+            "url"=>$this->archivo."categoria",
             "icono"=>"fa fa-book",
-            "texto"=>"Eventos"
+            "texto"=>"Categorias"
+        );
+        $menu[]=Array(
+            "clase"=>"",
+            "url"=>$this->archivo."departamento",
+            "icono"=>"fa fa-book",
+            "texto"=>"Departamentos"
         );
         return $menu;
     }

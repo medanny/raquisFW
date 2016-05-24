@@ -10,10 +10,7 @@ class Login extends \fw\core\Modelo{
         $this->usuario = new Usuario(false);
     }
 
-
     public function init(){
-
-        
     }
 
     public function inciarSesion($_usuario, $_clave){
@@ -27,10 +24,5 @@ class Login extends \fw\core\Modelo{
     public function verificarSesion(){
         return $this->usuario->verificarLogin();
     }
-
-
-
-
-
 }
 ?>

@@ -1,9 +1,7 @@
 <?php
 namespace app\controles;
-
 use fw\mods\utilerias\Utilerias;
 use fw\mods\plantillas\Constructor;
-
 class LoginControl extends \fw\core\Control {
     public $plantilla;
 
@@ -11,7 +9,6 @@ class LoginControl extends \fw\core\Control {
         $existe_sesion = $this->Login->existeSesion();
         $redireccionar = null;
         if(isset($_POST['usuario']) || $existe_sesion){
-
             if(isset($_POST['usuario'])&&isset($_POST['clave'])){
                 $resultado = $this->Login->inciarSesion($_POST['usuario'],$_POST['clave']);
                 if($resultado ==  EXITO){
@@ -21,16 +18,15 @@ class LoginControl extends \fw\core\Control {
                 $redireccionar = $this->Login->verificarSesion() == EXISTO ? true : false;
             }
             if($redireccionar){
-                Utilerias::redirectSeguro(DOMINIO."inventario/");
+                Utilerias::redirectSeguro(DOMINIO."inventario/index/articulo");
             }
         }
 
 
-        $this->plantilla = new Constructor("Hola mundo");
+        $this->plantilla = new Constructor("Login");
         $this->plantilla->asignarValor("skin","hold-transition login-page");
-
         $login_parametros=array(
-            "titulo" => "Mega Sistema 14",
+            "titulo" => "Inventario",
             "descripcion" => "Bienvenido, porfavor inicie session para continuar.",
             "input_1_tipo" => "text",
             "input_1_nombre" => "usuario",
@@ -45,6 +41,4 @@ class LoginControl extends \fw\core\Control {
         $this->plantilla->asignarParcial("content","login",$login_parametros);
         $this->plantilla->mostrar();
     }
-
-
 }

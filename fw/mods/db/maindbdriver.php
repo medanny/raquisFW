@@ -24,7 +24,7 @@ class mainDBDriver {
         $result = $this->result->execute();
         $this->last_query=$stm;
         $this->n_querys++;
-        return $result;
+        return $this;
     }
 
     public function query($stm){
@@ -114,6 +114,42 @@ class mainDBDriver {
 
     public function actualizar(){
 
+    }
+
+    public function actualizarXArray($_data){
+        $table = $_data['nombre_tabla'];
+        $query = "UPDATE  $table SET ";
+        foreach ($_data as $key => $value) {
+            if ($key != "nombre_tabla" && $key != "nombre_identificador" && $key != "identificador_valor") {
+                $query = $query . $key . " = '" . $value . "',";
+            }
+        }
+        $query = substr($query, 0, -1);
+        $field = $_data['nombre_identificador'];
+        $field_id = $_data['identificador_valor'];
+        $query = $query . "WHERE " . $field . " = " . $field_id;
+        $this->query($query);
+    }
+
+    public function insertarXArray($_data){
+        $tabla = $_data['nombre_tabla'];
+        $query = "INSERT INTO $tabla ";
+        unset($_data['nombre_tabla']);
+        $campos = "( ";
+        $valores = "( ";
+
+        foreach ($_data as $key => $value) {
+
+            $campos = $campos . $key . ",";
+            $valores = $valores . '"' . $value . '"' . ",";
+        }
+
+        $campos = substr($campos, 0, -1);
+        $valores = substr($valores, 0, -1);
+
+        $campos = $campos . ')';
+        $valores = $valores . ')';
+        $this->query($query . $campos . ' VALUES ' . $valores);
     }
 
 

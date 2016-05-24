@@ -1,6 +1,6 @@
 <?php
 
-namespace fw\core\qrs;
+namespace fw\mods\qrs;
 include_once (RUTA_MODULOS."qrs/qrcode/qrlib.php");
 class Qr{
 
